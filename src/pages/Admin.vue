@@ -1,24 +1,34 @@
 <template>
     <el-container>
-      <el-aside width="200px"><Menu></menu></el-aside>
+      <el-aside width="auto"><Menu :isShow='isShow'></menu></el-aside>
       <el-container>
         <el-header>
-            <Header></Header>
+            <Header @click='handleChangeShow'></Header>
         </el-header>
-        <el-main><Mianbao></Mianbao></el-main>
+        <el-main>
+          <Mianbao></Mianbao>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
 </template>
-
 <script>
 import Header from "../components/Header.vue";
 import Mianbao from "../components/Mianbao.vue";
 import Menu from "../components/Menu.vue";
 export default {
+  data(){
+    return {isShow:false}
+  },
     components:{
         Header,
         Mianbao,
         Menu
+    },
+    methods:{
+      handleChangeShow(){
+        this.isShow=!this.isShow
+      }
     }
 };
 </script>
