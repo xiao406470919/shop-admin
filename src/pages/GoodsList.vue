@@ -2,7 +2,7 @@
   <div>
     <el-row type="flex" justify="space-between">
       <div>
-        <el-button>新增</el-button>
+        <el-button @click='handleToGoodsAdd'>新增</el-button>
         <el-button type="danger" @click="handleDeleteMore">删除</el-button>
       </div>
       <div class="input-search">
@@ -112,8 +112,12 @@ export default {
       console.log(val);
       this.selectGoods = val;
     },
+    handleToGoodsAdd(){
+      this.$router.push('/admin/goods-add')
+    },
     handleEdit(goods) {
       console.log(goods);
+      this.$router.push('/admin/goods-edit/'+goods.id)
     },
     handleDeleteMore() {
       console.log(this.selectGoods);
