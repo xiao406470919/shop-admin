@@ -26,7 +26,37 @@ const routes = [
     ]
   },
 ]
-const router = new VueRouter({ routes })
+const router = new VueRouter({ routes });
+
+router.beforeEach((to,from,next)=>{
+  // console.log(to,from);
+  axios({
+    url:'http://localhost:8899/admin/account/islogin',
+    method:'GET',
+    withCredentials:true
+  }).then(res=>{
+    console.log(res);
+    const {code}=res.data;
+    console.log(to);
+    if (to.path==='/login') {
+      console.log(456);
+      if (code ==='logined') {
+        next('/admin/goods-list');
+        console.log(123);
+      }else{
+        next();
+      }
+    }else{
+      console.log(789);
+      if (code === 'logined') {
+        next();
+      }else{
+        next('/login');
+      }
+    }
+  })
+});
+
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios
 

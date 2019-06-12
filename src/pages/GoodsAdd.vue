@@ -128,7 +128,7 @@ export default {
   methods: {
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw);
-      console.log(res);
+      // console.log(res);
       this.form.imgList = [res];
     },
     beforeAvatarUpload(file) {
@@ -140,7 +140,7 @@ export default {
       return isLt2M;
     },
     handleRemove(file, fileList) {
-      console.log(fileList);
+      // console.log(fileList);
       const files=fileList.map(v=>{
         return v.response
       })
@@ -151,22 +151,22 @@ export default {
       this.dialogVisible = true;
     },
     handleCartSuccess(res,file,fileList){
-      console.log(fileList);
+      // console.log(fileList);
       const files=fileList.map(v=>{
         return v.response
       })
-      console.log(files);
+      // console.log(files);
       this.form.fileList=files
     },
     onSubmit() {
-      console.log("submit!");
+      // console.log("submit!");
       this.$axios({
         url:'http://localhost:8899/admin/goods/add/goods',
         method:'POST',
         data:this.form,
         withCredentials:true
       }).then(res=>{
-        console.log(res);
+        // console.log(res);
         const {status,message}=res.data
         if(status==0){
           this.$message.success(message)
@@ -182,7 +182,7 @@ export default {
       url: "http://localhost:8899/admin/category/getlist/goods",
       method: "GET"
     }).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       const { status, message } = res.data;
       this.categorys = message;
     });

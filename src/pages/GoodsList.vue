@@ -88,7 +88,7 @@ export default {
           `http://localhost:8899/admin/goods/getlist?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&searchvalue=${this.searchValue}`,
         method: "GET"
       }).then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         const data = res.data;
         this.tableData = data.message;
         this.total=data.totalcount
@@ -109,37 +109,37 @@ export default {
       });
     },
     handleSelectionChange(val) {
-      console.log(val);
+      // console.log(val);
       this.selectGoods = val;
     },
     handleToGoodsAdd(){
       this.$router.push('/admin/goods-add')
     },
     handleEdit(goods) {
-      console.log(goods);
+      // console.log(goods);
       this.$router.push('/admin/goods-edit/'+goods.id)
     },
     handleDeleteMore() {
-      console.log(this.selectGoods);
+      // console.log(this.selectGoods);
       const arr = this.selectGoods.map(v => {
         return v.id;
       });
-      console.log(arr);
+      // console.log(arr);
       const ids = arr.join(",");
       this.getDel(ids)
     },
     handleDelete(goods) {
-      console.log(goods);
+      // console.log(goods);
       const ids = goods.id;
       this.getDel(ids)
     },
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      // console.log(`每页 ${val} 条`);
       this.pageSize=val
       this.getList()
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      // console.log(`当前页: ${val}`);
       this.pageIndex=val
       this.getList()
     },

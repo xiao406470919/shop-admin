@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("submit!");
+      // console.log("submit!");
       const data = {
         uname: this.form.username,
         upwd: this.form.password
@@ -48,7 +48,7 @@ export default {
             data,
             withCredentials:true
           }).then(res => {
-            console.log(res);
+            // console.log(res);
             const { message, status } = res.data;
             if (status == 0) {
               this.$router.push("/");

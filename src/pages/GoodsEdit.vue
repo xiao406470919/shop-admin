@@ -180,21 +180,28 @@ export default {
       url: "http://localhost:8899/admin/category/getlist/goods",
       method: "GET"
     }).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       const { status, message } = res.data;
       this.categorys = message;
     });
-    console.log(this.$route);
+    // console.log(this.$route);
     const { id } = this.$route.params;
     this.$axios({
       url: "http://localhost:8899/admin/goods/getgoodsmodel/" + id,
       method: "GET"
     }).then(res => {
-      console.log(res);
+      // console.log(res);
       const { status, message } = res.data;
       this.form = {
         ...message,
-        category_id: +message.category_id
+        category_id: +message.category_id,
+        fileList:message.fileList.map(v=>{
+          // console.log(v);
+          return {
+            ...v,
+            url:`http://localhost:8899${v.shorturl}`
+          }
+        })
       };
       this.imageUrl = message.imgList[0].url;
     });
@@ -218,7 +225,7 @@ export default {
   color: #8c939d;
   width: 178px;
   height: 178px;
-  line-height: 178px;
+  line-height: 178px !important;
   text-align: center;
 }
 .avatar {
